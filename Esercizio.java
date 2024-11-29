@@ -1,26 +1,42 @@
-//LEGGERE LE ISTRUZIONI NEL FILE README.md
-
-//Import di Classi Java necessarie al funzionamento del programma
 import java.util.Scanner;
+import java.util.Random;
 
-// Classe principale, con metodo main
-class Esercizio {
-    // Il programma parte con una chiamata a main().
-    public static void main(String args[])
-    {
-        //Variabili del programma
-        String nome;
+public class Main {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        Random rand = new Random();
+        
+        int n, i, imax, tempo;
 
-        //Creo l'oggetto in per l'input da tastiera
-        Scanner in = new Scanner( System.in );
+        do {
+            System.out.println("ins numero atleti");
+            n = in.nextInt();
+        } while (n < 0);
+        
+        float[] tempi = new float[n];
+        String[] nomi = new String[n];
+        String[] nazionali = new String[n];
 
-        //Leggo l'input da tastiera
-        System.out.print("Inserisci il tuo nome: ");
-        nome = in.nextLine();
-
-        //Output del nome acquisito da tastiera
-        System.out.println("Ciao "+nome+"!");
+        for (i = 0; i < n; i++) {
+            System.out.println("ins nome " + (i + 1) + "° atleta");
+            nomi[i] = in.next();
+            System.out.println("ins nazionalità di " + nomi[i]);
+            nazionali[i] = in.next();
+            tempi[i] = rand.nextInt(11) + 7; // random() % 11 + 7
+        }
+        
+        for (i = 0; i < n; i++) {
+            System.out.println((i + 1) + "° atleta. nome: " + nomi[i] + ". nazione: " + nazionali[i] + ". tempo: " + tempi[i]);
+        }
+        
+        imax = 0;
+        for (i = 0; i < n; i++) {
+            if (tempi[i] < tempi[imax]) {
+                imax = i;
+            }
+        }
+        
+        System.out.println("l'atleta vincente è " + nomi[imax] + " di nazione " + nazionali[imax] + " con tempo " + tempi[imax]);
     }
 }
 
-//LEGGERE LE ISTRUZIONI NEL FILE README.md
